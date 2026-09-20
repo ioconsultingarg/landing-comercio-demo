@@ -1,6 +1,6 @@
 # landing-comercio-demo
 
-Landing page mobile-first para comercios locales, construida como demo de portfolio de **IO Consulting** (transformación digital para PyMEs argentinas). El caso de uso mostrado es una pizzería ficticia ("Pizzería Don Mario"), pero la plantilla está pensada para adaptarse rápido a cualquier rubro de servicios o gastronomía.
+Landing page mobile-first para comercios locales, construida como demo de portfolio de **IO Consulting** (transformación digital para PyMEs argentinas). El caso de uso mostrado es una pizzería ficticia ("Pizzería IO Consulting"), pero la plantilla está pensada para adaptarse rápido a cualquier rubro de servicios o gastronomía.
 
 ## Problema que resuelve
 
