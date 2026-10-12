@@ -1,3 +1,5 @@
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', function () {
   // Año dinámico en el footer
   var yearEl = document.getElementById('year');

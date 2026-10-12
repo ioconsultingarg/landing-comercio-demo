@@ -18,7 +18,7 @@ Muchos comercios de barrio no tienen web, o tienen una vieja y sin botón de con
 
 ## Demo
 
-Publicada con GitHub Pages: `https://ioconsultingarg.github.io/landing-comercio-demo/` (activar en Settings → Pages → branch `main` → carpeta `/root`).
+Publicada con GitHub Pages: `https://ioconsultingarg.github.io/landing-comercio-demo/`. Los datos del negocio son ficticios y la página lleva `noindex`; al adaptarla para un cliente real hay que quitar ese meta y la franja de demo.
 
 ## Stack
 
@@ -56,6 +56,10 @@ Alternativa: desplegar en Vercel o Netlify arrastrando la carpeta (sin configura
 ```
 landing-comercio-demo/
 ├── index.html
+├── 404.html
+├── favicon.svg
+├── img/
+│   └── og.png
 ├── css/
 │   └── styles.css
 ├── js/
