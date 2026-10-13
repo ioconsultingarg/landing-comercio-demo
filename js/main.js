@@ -23,10 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
-  // "Abierto ahora" según el horario del local (hora de Buenos Aires)
-  var statusEl = document.getElementById('status');
-  var statusText = document.getElementById('statusText');
-  if (statusEl && statusText && window.Intl) {
+  // "Abierto ahora" según el horario del local (hora de Buenos Aires).
+  // schedule: un par [abre, cierra] por día, de domingo a sábado, en minutos; null = cerrado.
+  var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  function hora(m) { m = m % 1440; return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); }
+  function renderStatus(schedule) {
+    var statusEl = document.getElementById('status');
+    var statusText = document.getElementById('statusText');
+    if (!statusEl || !statusText || !window.Intl) return;
     try {
       var now = {};
       new Intl.DateTimeFormat('en-US', {
@@ -34,18 +38,30 @@ document.addEventListener('DOMContentLoaded', function () {
       }).formatToParts(new Date()).forEach(function (p) { now[p.type] = p.value; });
       var day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(now.weekday);
       var mins = parseInt(now.hour, 10) * 60 + parseInt(now.minute, 10);
-      var trasnoche = (day === 6 || day === 0) && mins < 60; // viernes y sábado cierran a la 01:00
-      var noche = day !== 1 && mins >= 19 * 60;
-      if (trasnoche || noche) {
-        var cierre = (trasnoche || day === 5 || day === 6) ? '01:00' : '00:00';
+      var ayer = schedule[(day + 6) % 7];
+      var hoy = schedule[day];
+      var cierre = null;
+      if (ayer && ayer[1] > 1440 && mins < ayer[1] - 1440) cierre = ayer[1]; // trasnoche del día anterior
+      else if (hoy && mins >= hoy[0] && mins < hoy[1]) cierre = hoy[1];
+      statusEl.classList.remove('is-open', 'is-closed');
+      if (cierre !== null) {
         statusEl.classList.add('is-open');
-        statusText.textContent = 'Abierto ahora · cierra a las ' + cierre;
-      } else {
-        statusEl.classList.add('is-closed');
-        statusText.textContent = 'Cerrado ahora · abre ' + (day === 1 ? 'mañana' : 'hoy') + ' a las 19:00';
+        statusText.textContent = 'Abierto ahora · cierra a las ' + hora(cierre);
+        return;
       }
+      var cuando = 'hoy', abre = hoy && mins < hoy[0] ? hoy[0] : null;
+      for (var k = 1; abre === null && k <= 7; k++) {
+        var d = schedule[(day + k) % 7];
+        if (d) { abre = d[0]; cuando = k === 1 ? 'mañana' : 'el ' + DIAS[(day + k) % 7]; }
+      }
+      if (abre === null) return;
+      statusEl.classList.add('is-closed');
+      statusText.textContent = 'Cerrado ahora · abre ' + cuando + ' a las ' + hora(abre);
     } catch (e) { /* queda el texto fijo del HTML */ }
   }
+  // Pizzería: martes a jueves y domingo de 19 a 00; viernes y sábado de 19 a 01; lunes cerrado
+  renderStatus(window.landingSchedule || [[1140, 1440], null, [1140, 1440], [1140, 1440], [1140, 1440], [1140, 1500], [1140, 1500]]);
+  window.landing = { renderStatus: renderStatus };
 
   // Titular: entra palabra por palabra
   var title = document.getElementById('heroTitle');

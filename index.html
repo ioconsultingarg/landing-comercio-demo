@@ -25,6 +25,7 @@
 
 <link rel="preload" href="fonts/fraunces-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
+<script src="js/demo.js"></script>
 <script src="js/main.js"></script>
 
 <script type="application/ld+json">
@@ -51,13 +52,36 @@
 <body>
 
 <a class="skip-link" href="#inicio">Saltar al contenido</a>
-<p class="demo-strip">Demo de IO Consulting · negocio, precios y opiniones ficticios</p>
 
 <header class="site-header">
+  <div class="demo-bar">
+    <div class="container demo-bar-inner">
+      <p>Demo: <strong>así puede verse tu negocio</strong></p>
+      <button type="button" class="demo-btn" id="demoToggle" aria-expanded="false" aria-controls="demoPanel">Probalo con el tuyo</button>
+    </div>
+    <div class="demo-panel" id="demoPanel" hidden>
+      <div class="container demo-panel-inner">
+        <label for="demoName">Nombre de tu negocio</label>
+        <input class="demo-input" id="demoName" type="text" maxlength="40" autocomplete="off" placeholder="Ej.: La Esquina">
+        <fieldset class="demo-rubros">
+          <legend>Rubro</legend>
+          <label><input type="radio" name="rubro" value="pizzeria" checked> Pizzería</label>
+          <label><input type="radio" name="rubro" value="peluqueria"> Peluquería</label>
+          <label><input type="radio" name="rubro" value="taller"> Taller</label>
+          <label><input type="radio" name="rubro" value="consultorio"> Consultorio</label>
+        </fieldset>
+        <div class="demo-panel-actions">
+          <a class="btn btn-whatsapp" data-wa="io" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero una así</a>
+          <button type="button" class="demo-btn" id="demoCopy">Copiar link para compartir</button>
+        </div>
+        <p class="demo-note">Los textos, precios y opiniones de la demo son ficticios.</p>
+      </div>
+    </div>
+  </div>
   <div class="container header-inner">
     <a href="#inicio" class="logo">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 L22 20 H2 Z" fill="#c1272d"/><circle cx="9" cy="15" r="1.4" fill="#f4a300"/><circle cx="14" cy="12" r="1.2" fill="#f4a300"/><circle cx="12" cy="17" r="1" fill="#f4a300"/></svg>
-      <span>IO Consulting</span>
+      <svg id="logoMark" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 L22 20 H2 Z" fill="#c1272d"/><circle cx="9" cy="15" r="1.4" fill="#f4a300"/><circle cx="14" cy="12" r="1.2" fill="#f4a300"/><circle cx="12" cy="17" r="1" fill="#f4a300"/></svg>
+      <span class="logo-initial" id="logoInitial" aria-hidden="true" hidden></span><span data-t="brand">IO Consulting</span>
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navMenu">
@@ -65,10 +89,10 @@
     </button>
 
     <nav id="navMenu" class="nav-menu">
-      <a href="#menu">Menú</a>
+      <a href="#menu" data-t="nav">Menú</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#ubicacion">Ubicación</a>
-      <a class="btn btn-whatsapp-small" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+      <a class="btn btn-whatsapp-small" data-t="ctaNav" data-wa="order" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">Pedir por WhatsApp</a>
     </nav>
   </div>
 </header>
@@ -79,17 +103,18 @@
     <div class="container hero-inner">
       <div class="hero-copy">
         <p class="status" id="status"><span class="status-dot" aria-hidden="true"></span><span id="statusText">Martes a domingo desde las 19:00</span></p>
-        <h1 id="heroTitle">Pizza artesanal a la piedra, como la de siempre.</h1>
-        <p class="hero-subtitle">Más de 15 años en el barrio. Ingredientes frescos, masa de fermentación lenta y delivery en el día.</p>
+        <h1 id="heroTitle" data-t="title">Pizza artesanal a la piedra, como la de siempre.</h1>
+        <p class="hero-subtitle" data-t="sub">Más de 15 años en el barrio. Ingredientes frescos, masa de fermentación lenta y delivery en el día.</p>
         <div class="hero-actions">
-          <a class="btn btn-whatsapp" id="heroCta" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">
+          <a class="btn btn-whatsapp" id="heroCta" data-wa="order" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.6 17l-1.1 4 4.1-1a8.9 8.9 0 0 0 4.4 1.2h0A8.9 8.9 0 0 0 20 12.9a8.8 8.8 0 0 0-2.4-6.6ZM11 19.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.6.6-2.4-.2-.3a7.4 7.4 0 1 1 13.7-3.9A7.4 7.4 0 0 1 11 19.6Zm4.1-5.5c-.2-.1-1.3-.6-1.5-.7s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.2-.7-1.6s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.5 10.3 10.3 0 0 0 4 3.5c.5.2 1 .4 1.3.5a3.1 3.1 0 0 0 1.4.1 2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3Z"/></svg>
-            Pedir ahora
+            <span data-t="ctaHero">Pedir ahora</span>
           </a>
-          <a class="btn btn-ghost" href="#menu">Ver el menú</a>
+          <a class="btn btn-ghost" href="#menu" data-t="ctaSee">Ver el menú</a>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
+        <div class="art" data-art="pizzeria">
         <svg class="pizza" id="pizza" viewBox="0 0 400 400" focusable="false">
           <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L200.0 10.0 A190 190 0 0 1 334.4 65.6 Z" fill="#dba15a"/><path d="M200 200 L200.0 29.0 A171 171 0 0 1 320.9 79.1 Z" fill="#c1272d"/><path d="M200 200 L200.0 37.0 A163 163 0 0 1 315.3 84.7 Z" fill="#f7d47c"/><circle cx="241.3" cy="100.2" r="17" fill="#b3212a"/><circle cx="236.3" cy="96.2" r="3" fill="#d9565c"/><circle cx="246.3" cy="105.2" r="2.4" fill="#d9565c"/><circle cx="221.9" cy="61.7" r="8" fill="#2b2320"/><circle cx="221.9" cy="61.7" r="3" fill="#f7d47c"/><ellipse cx="231.9" cy="146.9" rx="14" ry="7" fill="#3f8a45" transform="rotate(60 231.9 146.9)"/></g><path class="pz-line" pathLength="1" d="M200 200 L200.0 10.0 A190 190 0 0 1 334.4 65.6 Z"/></g>
           <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L334.4 65.6 A190 190 0 0 1 390.0 200.0 Z" fill="#dba15a"/><path d="M200 200 L320.9 79.1 A171 171 0 0 1 371.0 200.0 Z" fill="#c1272d"/><path d="M200 200 L315.3 84.7 A163 163 0 0 1 363.0 200.0 Z" fill="#f7d47c"/><circle cx="299.8" cy="158.7" r="17" fill="#b3212a"/><circle cx="294.8" cy="154.7" r="3" fill="#d9565c"/><circle cx="304.8" cy="163.7" r="2.4" fill="#d9565c"/><circle cx="313.3" cy="117.7" r="8" fill="#2b2320"/><circle cx="313.3" cy="117.7" r="3" fill="#f7d47c"/><circle cx="260.2" cy="185.0" r="11" fill="#b3212a"/></g><path class="pz-line" pathLength="1" d="M200 200 L334.4 65.6 A190 190 0 0 1 390.0 200.0 Z"/></g>
@@ -100,15 +125,34 @@
           <g class="pz-slice pz-out"><g class="pz-fill"><path d="M200 200 L10.0 200.0 A190 190 0 0 1 65.6 65.6 Z" fill="#dba15a"/><path d="M200 200 L29.0 200.0 A171 171 0 0 1 79.1 79.1 Z" fill="#c1272d"/><path d="M200 200 L37.0 200.0 A163 163 0 0 1 84.7 84.7 Z" fill="#f7d47c"/><circle cx="100.2" cy="158.7" r="17" fill="#b3212a"/><circle cx="95.2" cy="154.7" r="3" fill="#d9565c"/><circle cx="105.2" cy="163.7" r="2.4" fill="#d9565c"/><circle cx="61.7" cy="178.1" r="8" fill="#2b2320"/><circle cx="61.7" cy="178.1" r="3" fill="#f7d47c"/><ellipse cx="146.9" cy="168.1" rx="14" ry="7" fill="#3f8a45" transform="rotate(330 146.9 168.1)"/></g><path class="pz-line" pathLength="1" d="M200 200 L10.0 200.0 A190 190 0 0 1 65.6 65.6 Z"/></g>
           <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L65.6 65.6 A190 190 0 0 1 200.0 10.0 Z" fill="#dba15a"/><path d="M200 200 L79.1 79.1 A171 171 0 0 1 200.0 29.0 Z" fill="#c1272d"/><path d="M200 200 L84.7 84.7 A163 163 0 0 1 200.0 37.0 Z" fill="#f7d47c"/><circle cx="158.7" cy="100.2" r="17" fill="#b3212a"/><circle cx="153.7" cy="96.2" r="3" fill="#d9565c"/><circle cx="163.7" cy="105.2" r="2.4" fill="#d9565c"/><circle cx="117.7" cy="86.7" r="8" fill="#2b2320"/><circle cx="117.7" cy="86.7" r="3" fill="#f7d47c"/><circle cx="185.0" cy="139.8" r="11" fill="#b3212a"/></g><path class="pz-line" pathLength="1" d="M200 200 L65.6 65.6 A190 190 0 0 1 200.0 10.0 Z"/></g>
         </svg>
+        </div>
+        <div class="art" data-art="peluqueria" hidden>
+        <svg class="rubro-art" viewBox="0 0 400 400" focusable="false">
+          <circle class="ra-plate" cx="200" cy="200" r="188"/>
+          <g transform="translate(68 68) scale(11)"><circle class="ra-line" pathLength="1" cx="6" cy="6" r="3"/><circle class="ra-line" pathLength="1" cx="6" cy="18" r="3"/><path class="ra-line" pathLength="1" d="M8.2 8.2 20 20"/><path class="ra-line" pathLength="1" d="M8.2 15.8 20 4"/></g>
+        </svg>
+        </div>
+        <div class="art" data-art="taller" hidden>
+        <svg class="rubro-art" viewBox="0 0 400 400" focusable="false">
+          <circle class="ra-plate" cx="200" cy="200" r="188"/>
+          <g transform="translate(68 68) scale(11)"><circle class="ra-line" pathLength="1" cx="12" cy="12" r="6.8"/><circle class="ra-line" pathLength="1" cx="12" cy="12" r="3"/><path class="ra-line" pathLength="1" d="M12.00 5.20 L12.00 2.40"/><path class="ra-line" pathLength="1" d="M16.81 7.19 L18.79 5.21"/><path class="ra-line" pathLength="1" d="M18.80 12.00 L21.60 12.00"/><path class="ra-line" pathLength="1" d="M16.81 16.81 L18.79 18.79"/><path class="ra-line" pathLength="1" d="M12.00 18.80 L12.00 21.60"/><path class="ra-line" pathLength="1" d="M7.19 16.81 L5.21 18.79"/><path class="ra-line" pathLength="1" d="M5.20 12.00 L2.40 12.00"/><path class="ra-line" pathLength="1" d="M7.19 7.19 L5.21 5.21"/></g>
+        </svg>
+        </div>
+        <div class="art" data-art="consultorio" hidden>
+        <svg class="rubro-art" viewBox="0 0 400 400" focusable="false">
+          <circle class="ra-plate" cx="200" cy="200" r="188"/>
+          <g transform="translate(68 68) scale(11)"><path class="ra-line" pathLength="1" d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6Z"/></g>
+        </svg>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="menu" class="section">
     <div class="container">
-      <h2 class="section-title reveal">Nuestros clásicos</h2>
-      <p class="section-subtitle reveal">Tocá una pizza y el pedido sale armado por WhatsApp.</p>
-      <ul class="carta">
+      <h2 class="section-title reveal" data-t="itemsTitle">Nuestros clásicos</h2>
+      <p class="section-subtitle reveal" data-t="itemsSub">Tocá una pizza y el pedido sale armado por WhatsApp.</p>
+      <ul class="carta" id="carta">
         <li class="carta-item reveal">
           <h3 class="carta-name">Muzzarella</h3>
           <span class="carta-dots" aria-hidden="true"></span>
@@ -147,24 +191,24 @@
       <div class="features-grid">
         <div class="feature reveal">
           <div class="feature-icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c1272d" stroke-width="2"><path d="M5 19C5 10 10 5 20 4c0 10-5 15-15 15Z"/><path d="M5 19 13 11"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19C5 10 10 5 20 4c0 10-5 15-15 15Z"/><path d="M5 19 13 11"/></svg>
           </div>
-          <h3>Ingredientes frescos</h3>
-          <p>Compramos todos los días en el mercado del barrio. Nada de congelados.</p>
+          <h3 data-t="f0t">Ingredientes frescos</h3>
+          <p data-t="f0d">Compramos todos los días en el mercado del barrio. Nada de congelados.</p>
         </div>
         <div class="feature reveal">
           <div class="feature-icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c1272d" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
-          <h3>Delivery rápido</h3>
-          <p>Entrega propia en menos de 40 minutos dentro del barrio.</p>
+          <h3 data-t="f1t">Delivery rápido</h3>
+          <p data-t="f1d">Entrega propia en menos de 40 minutos dentro del barrio.</p>
         </div>
         <div class="feature reveal">
           <div class="feature-icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c1272d" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <h3>15 años en el barrio</h3>
-          <p>Atendemos a las mismas familias desde 2011. Somos parte del barrio.</p>
+          <h3 data-t="f2t">15 años en el barrio</h3>
+          <p data-t="f2d">Atendemos a las mismas familias desde 2011. Somos parte del barrio.</p>
         </div>
       </div>
     </div>
@@ -174,13 +218,13 @@
     <div class="container ubicacion-grid">
       <div class="reveal">
         <h2 class="section-title">Horarios y ubicación</h2>
-        <ul class="horarios-list">
+        <ul class="horarios-list" id="horarios">
           <li><strong>Martes a jueves y domingos:</strong> 19:00 a 00:00</li>
           <li><strong>Viernes y sábados:</strong> 19:00 a 01:00</li>
           <li><strong>Lunes:</strong> cerrado</li>
         </ul>
         <p class="direccion">📍 Av. Ejemplo 1234, Buenos Aires (dirección ficticia)</p>
-        <a class="btn btn-whatsapp" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">Hacer un pedido</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener" data-t="ctaLoc" data-wa="order">Hacer un pedido</a>
       </div>
       <div class="map-wrapper reveal">
         <iframe
@@ -198,14 +242,31 @@
       <h2 class="section-title reveal">Lo que dicen nuestros clientes</h2>
       <div class="testimonios-grid">
         <blockquote class="testimonio reveal">
-          <p>"La fugazzeta rellena es un golazo. Pedimos casi todos los viernes."</p>
-          <cite>— Marina, vecina del barrio</cite>
+          <p data-t="q0">"La fugazzeta rellena es un golazo. Pedimos casi todos los viernes."</p>
+          <cite data-t="a0">— Marina, vecina del barrio</cite>
         </blockquote>
         <blockquote class="testimonio reveal">
-          <p>"Llega siempre caliente y en horario. Se nota que la hacen al momento."</p>
-          <cite>— Ezequiel, cliente habitué</cite>
+          <p data-t="q1">"Llega siempre caliente y en horario. Se nota que la hacen al momento."</p>
+          <cite data-t="a1">— Ezequiel, cliente habitué</cite>
         </blockquote>
       </div>
+    </div>
+  </section>
+
+  <section id="para-tu-negocio" class="section owner">
+    <div class="container owner-inner">
+      <p class="owner-kicker reveal">Si tenés un negocio</p>
+      <h2 class="section-title reveal" data-t="ownerTitle">Esto, para tu negocio.</h2>
+      <p class="owner-lead reveal">Lo que acabás de recorrer es una demo de IO Consulting. La armamos con tu marca, tus precios y tu WhatsApp, para que tus clientes te encuentren y te escriban en un toque.</p>
+      <ol class="owner-steps">
+        <li class="reveal"><strong>Reunión inicial sin costo</strong><span>Nos contás cómo trabajás hoy y qué querés resolver.</span></li>
+        <li class="reveal"><strong>Propuesta a tu medida</strong><span>Con alcance, tiempos y presupuesto claros, según tu negocio.</span></li>
+        <li class="reveal"><strong>Implementación y seguimiento</strong><span>La publicamos y te acompañamos después de salir.</span></li>
+      </ol>
+      <a class="btn btn-whatsapp reveal" data-wa="io" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.6 17l-1.1 4 4.1-1a8.9 8.9 0 0 0 4.4 1.2h0A8.9 8.9 0 0 0 20 12.9a8.8 8.8 0 0 0-2.4-6.6ZM11 19.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.6.6-2.4-.2-.3a7.4 7.4 0 1 1 13.7-3.9A7.4 7.4 0 0 1 11 19.6Zm4.1-5.5c-.2-.1-1.3-.6-1.5-.7s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.2-.7-1.6s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.5 10.3 10.3 0 0 0 4 3.5c.5.2 1 .4 1.3.5a3.1 3.1 0 0 0 1.4.1 2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3Z"/></svg>
+        Quiero una para mi negocio
+      </a>
     </div>
   </section>
 
@@ -213,12 +274,12 @@
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p>© <span id="year"></span> Pizzería IO Consulting · Demo desarrollado por IO Consulting</p>
-    <a href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">WhatsApp</a>
+    <p>© <span id="year"></span> <span data-t="brandFull">Pizzería IO Consulting</span> · Demo de IO Consulting con negocio, precios y opiniones ficticios</p>
+    <a data-wa="io" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero una para mi negocio</a>
   </div>
 </footer>
 
-<a class="whatsapp-float" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+<a class="whatsapp-float" data-wa="order" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
   <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.6 17l-1.1 4 4.1-1a8.9 8.9 0 0 0 4.4 1.2h0A8.9 8.9 0 0 0 20 12.9a8.8 8.8 0 0 0-2.4-6.6ZM11 19.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.6.6-2.4-.2-.3a7.4 7.4 0 1 1 13.7-3.9A7.4 7.4 0 0 1 11 19.6Zm4.1-5.5c-.2-.1-1.3-.6-1.5-.7s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.2-.7-1.6s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.5 10.3 10.3 0 0 0 4 3.5c.5.2 1 .4 1.3.5a3.1 3.1 0 0 0 1.4.1 2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3Z"/></svg>
 </a>
 

@@ -64,13 +64,62 @@ a { color: inherit; }
 }
 .skip-link:focus { left: 0; }
 
-.demo-strip {
-  margin: 0;
-  padding: 0.4rem 1.25rem;
-  background: var(--color-text);
+/* Temas por rubro (los activa demo.js con data-rubro en <html>) */
+[data-rubro="peluqueria"] { --color-primary: #8a2c5f; --color-primary-dark: #641d44; --color-secondary: #f2b8c6; --color-bg: #fdf6f8; }
+[data-rubro="taller"] { --color-primary: #1f4e79; --color-primary-dark: #163a5a; --color-secondary: #f4a300; --color-bg: #f4f7fa; }
+[data-rubro="consultorio"] { --color-primary: #0f766e; --color-primary-dark: #0b5a54; --color-secondary: #a7e3d6; --color-bg: #f2faf8; }
+
+section[id] { scroll-margin-top: 44px; }
+
+/* ---------- Barra de demo ---------- */
+.demo-bar { background: var(--color-text); color: white; font-size: 0.8rem; }
+.demo-bar-inner { display: flex; align-items: center; justify-content: center; gap: 0.75rem; min-height: 40px; padding-top: 0.3rem; padding-bottom: 0.3rem; }
+.demo-bar p { margin: 0; }
+.demo-btn {
+  display: none;
+  padding: 0.35rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-secondary);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.js .demo-btn { display: inline-block; }
+.demo-panel { background: #3a302c; padding: 1rem 0 1.2rem; font-size: 0.9rem; }
+.demo-panel[hidden], .demo-btn[hidden], .art[hidden], .logo-initial[hidden] { display: none; }
+.demo-panel-inner { display: grid; gap: 0.7rem; max-width: 640px; }
+.demo-panel label, .demo-panel legend { font-weight: 600; }
+.demo-input { width: 100%; padding: 0.6rem 0.8rem; border: 0; border-radius: 10px; font: inherit; font-size: 1rem; }
+.demo-rubros { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; border: 0; }
+.demo-rubros legend { width: 100%; margin-bottom: 0.5rem; padding: 0; }
+.demo-rubros label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 40px;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-weight: 500;
+  cursor: pointer;
+}
+.demo-rubros input { accent-color: var(--color-secondary); }
+.demo-panel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.3rem; }
+.demo-note { margin: 0; color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; }
+
+.logo-initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-primary);
   color: white;
-  text-align: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 /* ---------- Header ---------- */
@@ -252,6 +301,21 @@ a { color: inherit; }
 .pizza.is-served .pz-out { transform: translate(-15px, -6px); }
 .pizza.is-hot .pz-out { transform: translate(-31px, -13px); }
 
+/* Ilustraciones de los otros rubros (se dibujan al mostrarse); van enteras, sin recorte */
+.hero-art.is-icon { width: min(64vw, 280px); margin-bottom: 3rem; }
+.rubro-art { display: block; width: 100%; height: auto; }
+.ra-plate { fill: var(--color-bg-alt); stroke: var(--color-primary); stroke-width: 6; }
+.ra-line {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: pz-draw 1s ease 0.15s forwards;
+}
+
 /* ---------- Sections ---------- */
 .section { padding: 3.5rem 0; }
 .section-alt { background: var(--color-bg-alt); }
@@ -311,6 +375,7 @@ a { color: inherit; }
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 0.8rem;
   background: var(--color-bg);
+  color: var(--color-primary);
   border-radius: 50%;
 }
 .feature p { color: var(--color-text-light); }
@@ -349,8 +414,34 @@ a { color: inherit; }
 .testimonio p { margin: 0 0 0.6rem; font-style: italic; }
 .testimonio cite { color: var(--color-text-light); font-style: normal; font-size: 0.9rem; }
 
+/* ---------- Para tu negocio ---------- */
+.owner { background: var(--color-text); color: white; text-align: center; }
+.owner-kicker { margin: 0 0 0.6rem; color: var(--color-secondary); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.owner-lead { max-width: 58ch; margin: 0 auto 2.2rem; color: rgba(255, 255, 255, 0.82); font-size: 1.05rem; }
+.owner-steps { display: grid; gap: 1.2rem; max-width: 900px; margin: 0 auto 2.4rem; padding: 0; list-style: none; counter-reset: paso; text-align: left; }
+.owner-steps li { position: relative; padding: 1.2rem 1.2rem 1.2rem 4rem; border-radius: var(--radius); background: rgba(255, 255, 255, 0.07); counter-increment: paso; }
+.owner-steps li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 1.1rem;
+  top: 1.1rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+.owner-steps strong { display: block; margin-bottom: 0.2rem; font-family: var(--font-heading); font-size: 1.15rem; }
+.owner-steps span { color: rgba(255, 255, 255, 0.78); }
+.owner .btn { padding: 0.95rem 1.7rem; font-size: 1.05rem; }
+
 /* ---------- Footer ---------- */
-.site-footer { background: var(--color-text); color: white; padding: 1.5rem 0; }
+.site-footer { background: var(--color-text); color: white; padding: 1.5rem 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
 .footer-inner {
   display: flex;
   flex-direction: column;
@@ -401,7 +492,7 @@ a { color: inherit; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .btn, .whatsapp-float, .nav-menu, .pz-slice { transition: none; }
   .pizza { transform: none; }
-  .pz-line { animation: none; stroke-dashoffset: 0; }
+  .pz-line, .ra-line { animation: none; stroke-dashoffset: 0; }
   .pz-fill { animation: none; opacity: 1; }
   .whatsapp-float::after { animation: none; }
 }
@@ -424,6 +515,7 @@ a { color: inherit; }
   .features-grid { grid-template-columns: repeat(3, 1fr); }
   .ubicacion-grid { grid-template-columns: 1fr 1fr; }
   .testimonios-grid { grid-template-columns: repeat(2, 1fr); }
+  .owner-steps { grid-template-columns: repeat(3, 1fr); }
   .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
 }
 
@@ -434,4 +526,5 @@ a { color: inherit; }
   .hero-subtitle { margin-left: 0; margin-right: 0; }
   .hero-actions { justify-content: flex-start; }
   .hero-art { width: 660px; margin: -2rem 0 -8rem 1rem; }
+  .hero-art.is-icon { width: 400px; margin: 0 auto; }
 }

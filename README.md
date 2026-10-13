@@ -64,7 +64,8 @@ landing-comercio-demo/
 ├── css/
 │   └── styles.css
 ├── js/
-│   └── main.js
+│   ├── main.js
+│   └── demo.js      # capa de demo (personalización por rubro); se quita al entregar a un cliente
 ├── README.md
 └── LICENSE
 ```
