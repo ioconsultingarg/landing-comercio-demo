@@ -3,6 +3,19 @@
    adaptar la landing a otro rubro (peluquería,
    consultorio, taller, etc.)
    ============================================ */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('../fonts/fraunces-latin-wght.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-latin-wght.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
   --color-primary: #c1272d;
   --color-primary-dark: #8f1a1f;
@@ -12,7 +25,7 @@
   --color-bg-alt: #ffffff;
   --color-text: #2b2320;
   --color-text-light: #6b6058;
-  --font-heading: 'Poppins', sans-serif;
+  --font-heading: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --radius: 14px;
   --shadow: 0 10px 30px rgba(43, 35, 32, 0.08);
@@ -30,7 +43,7 @@ body {
   line-height: 1.5;
 }
 
-h1, h2, h3 { font-family: var(--font-heading); line-height: 1.2; margin: 0 0 0.5em; }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 650; letter-spacing: -0.01em; line-height: 1.2; margin: 0 0 0.5em; }
 
 .container {
   max-width: var(--max-width);
@@ -148,43 +161,143 @@ a { color: inherit; }
 .btn-whatsapp, .btn-whatsapp-small { background: var(--color-whatsapp); color: var(--color-text); }
 .btn-whatsapp-small { padding: 0.55rem 1.1rem; font-size: 0.9rem; align-self: flex-start; }
 
+/* Brillo que cruza el botón de WhatsApp al pasar o enfocar */
+.btn-whatsapp { position: relative; overflow: hidden; box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35); }
+.btn-whatsapp::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+  transform: translateX(-120%);
+}
+.btn-whatsapp:hover::after, .btn-whatsapp:focus-visible::after { transform: translateX(120%); transition: transform 0.6s ease; }
+.btn-whatsapp svg { transition: transform 0.3s ease; }
+.btn-whatsapp:hover svg { transform: rotate(-12deg) scale(1.15); }
+
+.btn-ghost { background: transparent; color: var(--color-text); box-shadow: inset 0 0 0 2px var(--color-text); }
+.btn-ghost:hover { background: var(--color-text); color: white; }
+
 /* ---------- Hero ---------- */
 .hero {
-  background: radial-gradient(circle at top right, rgba(244,163,0,0.18), transparent 55%),
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 85% 30%, rgba(244,163,0,0.22), transparent 55%),
               linear-gradient(180deg, var(--color-bg-alt), var(--color-bg));
-  padding: 4.5rem 0 3.5rem;
+  padding: 3rem 0 0;
   text-align: center;
 }
-.hero h1 { font-size: 2rem; max-width: 20ch; margin-left: auto; margin-right: auto; }
+.hero-inner { display: grid; gap: 2.5rem; }
+.hero h1 {
+  font-size: clamp(2.4rem, 10vw, 4.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  max-width: 13ch;
+  margin: 0 auto;
+}
+.hero h1 .w { display: inline-block; }
 .hero-subtitle {
   color: var(--color-text-light);
-  max-width: 46ch;
-  margin: 1rem auto 2rem;
-  font-size: 1.05rem;
+  max-width: 44ch;
+  margin: 1.2rem auto 1.8rem;
+  font-size: 1.08rem;
 }
 .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+.hero .btn { padding: 0.95rem 1.7rem; font-size: 1.05rem; }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.2rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: var(--color-bg-alt);
+  box-shadow: 0 2px 10px rgba(43, 35, 32, 0.08);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.status-dot { width: 9px; height: 9px; border-radius: 50%; background: #a39a92; }
+.status.is-open .status-dot { background: #1f9d55; box-shadow: 0 0 0 4px rgba(31, 157, 85, 0.18); }
+.status.is-closed .status-dot { background: var(--color-primary); }
+
+/* Pizza ilustrada: se dibuja, se rellena y gira con el scroll (--pz-rot lo setea main.js) */
+.hero-art {
+  width: min(88vw, 400px);
+  margin: 0 auto calc(min(88vw, 400px) * -0.36);
+  filter: drop-shadow(0 18px 30px rgba(43, 35, 32, 0.2));
+}
+.pizza { display: block; width: 100%; height: auto; overflow: visible; transform: rotate(var(--pz-rot, 0deg)); }
+.pz-slice { transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.pz-slice:nth-child(1) { --i: 0; }
+.pz-slice:nth-child(2) { --i: 1; }
+.pz-slice:nth-child(3) { --i: 2; }
+.pz-slice:nth-child(4) { --i: 3; }
+.pz-slice:nth-child(5) { --i: 4; }
+.pz-slice:nth-child(6) { --i: 5; }
+.pz-slice:nth-child(7) { --i: 6; }
+.pz-slice:nth-child(8) { --i: 7; }
+.pz-line {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: pz-draw 0.8s ease forwards;
+  animation-delay: calc(var(--i) * 70ms);
+}
+.pz-fill { opacity: 0; animation: pz-fill 0.5s ease forwards; animation-delay: calc(700ms + var(--i) * 60ms); }
+@keyframes pz-draw { to { stroke-dashoffset: 0; } }
+@keyframes pz-fill { to { opacity: 1; } }
+.pizza.is-served .pz-out { transform: translate(-15px, -6px); }
+.pizza.is-hot .pz-out { transform: translate(-31px, -13px); }
 
 /* ---------- Sections ---------- */
 .section { padding: 3.5rem 0; }
 .section-alt { background: var(--color-bg-alt); }
-.section-title { text-align: center; font-size: 1.6rem; }
+.section-title { text-align: center; font-size: clamp(1.8rem, 5vw, 2.4rem); }
 .section-subtitle { text-align: center; color: var(--color-text-light); margin-top: -0.5rem; margin-bottom: 2rem; }
 
-/* ---------- Menu grid ---------- */
-.menu-grid {
+/* ---------- Carta ---------- */
+.carta { list-style: none; max-width: 760px; margin: 0 auto; padding: 0; }
+.carta-item {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
-}
-.menu-card {
-  background: var(--color-bg-alt);
+  grid-template-columns: minmax(0, auto) minmax(1rem, 1fr) auto;
+  column-gap: 0.75rem;
+  align-items: baseline;
+  padding: 1.1rem 0.9rem;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.4rem;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
-.menu-card h3 { margin-bottom: 0.4rem; }
-.menu-card p { color: var(--color-text-light); margin: 0 0 0.8rem; }
-.price { font-weight: 700; color: var(--color-primary); font-size: 1.1rem; }
+.carta-item:hover, .carta-item:focus-within { background: var(--color-bg-alt); box-shadow: var(--shadow); }
+.carta-name { margin: 0; font-size: 1.3rem; }
+.carta-dots { border-bottom: 2px dotted rgba(43, 35, 32, 0.3); transform: translateY(-0.3em); }
+.carta-price {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+.carta-desc { grid-column: 1 / 3; margin: 0.25rem 0 0; color: var(--color-text-light); }
+.carta-link { grid-column: 3; justify-self: end; align-self: end; font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+.carta-link::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+.carta-link span { display: inline-block; transition: transform 0.2s ease; }
+.carta-item:hover .carta-link span { transform: translateX(4px); }
+.badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--color-secondary);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
 
 /* ---------- Features ---------- */
 .features-grid {
@@ -266,6 +379,17 @@ a { color: inherit; }
   transition: transform 0.15s ease;
 }
 .whatsapp-float:hover { transform: scale(1.08); }
+/* Dos pulsos a los 4 segundos, sin bucle */
+.whatsapp-float::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--color-whatsapp);
+  opacity: 0;
+  animation: wa-ping 1.4s ease-out 4s 2;
+}
+@keyframes wa-ping { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.9); opacity: 0; } }
 
 /* ---------- Scroll reveal ---------- */
 /* Solo se oculta si hay JS (main.js agrega .js al <html>); sin JS el contenido queda visible */
@@ -275,7 +399,11 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
-  .btn, .whatsapp-float, .nav-menu { transition: none; }
+  .btn, .whatsapp-float, .nav-menu, .pz-slice { transition: none; }
+  .pizza { transform: none; }
+  .pz-line { animation: none; stroke-dashoffset: 0; }
+  .pz-fill { animation: none; opacity: 1; }
+  .whatsapp-float::after { animation: none; }
 }
 
 /* ---------- Responsive ---------- */
@@ -293,14 +421,17 @@ a { color: inherit; }
     overflow: visible;
     visibility: visible;
   }
-  .hero h1 { font-size: 2.6rem; }
-  .menu-grid { grid-template-columns: repeat(2, 1fr); }
   .features-grid { grid-template-columns: repeat(3, 1fr); }
   .ubicacion-grid { grid-template-columns: 1fr 1fr; }
   .testimonios-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
 }
 
-@media (min-width: 1024px) {
-  .menu-grid { grid-template-columns: repeat(4, 1fr); }
+@media (min-width: 900px) {
+  .hero { text-align: left; padding: 4rem 0; }
+  .hero-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 2rem; }
+  .hero h1 { margin: 0; }
+  .hero-subtitle { margin-left: 0; margin-right: 0; }
+  .hero-actions { justify-content: flex-start; }
+  .hero-art { width: 660px; margin: -2rem 0 -8rem 1rem; }
 }

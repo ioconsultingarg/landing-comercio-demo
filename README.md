@@ -23,8 +23,8 @@ Publicada con GitHub Pages: `https://ioconsultingarg.github.io/landing-comercio-
 ## Stack
 
 - HTML5 semántico + CSS puro (sin frameworks, variables CSS para theming)
-- JavaScript vanilla (menú mobile, scroll reveal, año dinámico)
-- Google Fonts (Poppins + Inter) vía `<link>`
+- JavaScript vanilla, sin librerías (menú mobile, estado abierto/cerrado, animaciones del hero, scroll reveal)
+- Tipografías Fraunces + Inter (licencia OFL) alojadas en `fonts/`, sin llamadas a Google Fonts
 - SEO local: meta tags, Open Graph, JSON-LD `schema.org/Restaurant`
 - Sin build step ni dependencias — se edita y se despliega directo
 
@@ -58,6 +58,7 @@ landing-comercio-demo/
 ├── index.html
 ├── 404.html
 ├── favicon.svg
+├── fonts/
 ├── img/
 │   └── og.png
 ├── css/

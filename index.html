@@ -7,7 +7,7 @@
 <meta name="description" content="Pizzería IO Consulting: pizzas artesanales a la piedra, delivery rápido y atención de barrio hace más de 15 años. Pedí por WhatsApp.">
 <meta name="theme-color" content="#c1272d">
 <meta name="robots" content="noindex">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.google.com; img-src 'self' data:; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-src https://www.google.com; img-src 'self' data:; base-uri 'self'; form-action 'none'">
 <link rel="canonical" href="https://ioconsultingarg.github.io/landing-comercio-demo/">
 
 <meta property="og:type" content="website">
@@ -23,9 +23,7 @@
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/fraunces-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
 <script src="js/main.js"></script>
 
@@ -79,14 +77,29 @@
 
   <section id="inicio" class="hero">
     <div class="container hero-inner">
-      <h1>Pizza artesanal a la piedra, como la de siempre.</h1>
-      <p class="hero-subtitle">Más de 15 años en el barrio. Ingredientes frescos, masa de fermentación lenta y delivery en el día.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#menu">Ver el menú</a>
-        <a class="btn btn-whatsapp" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.6 17l-1.1 4 4.1-1a8.9 8.9 0 0 0 4.4 1.2h0A8.9 8.9 0 0 0 20 12.9a8.8 8.8 0 0 0-2.4-6.6ZM11 19.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.6.6-2.4-.2-.3a7.4 7.4 0 1 1 13.7-3.9A7.4 7.4 0 0 1 11 19.6Zm4.1-5.5c-.2-.1-1.3-.6-1.5-.7s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.2-.7-1.6s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.5 10.3 10.3 0 0 0 4 3.5c.5.2 1 .4 1.3.5a3.1 3.1 0 0 0 1.4.1 2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3Z"/></svg>
-          Pedir ahora
-        </a>
+      <div class="hero-copy">
+        <p class="status" id="status"><span class="status-dot" aria-hidden="true"></span><span id="statusText">Martes a domingo desde las 19:00</span></p>
+        <h1 id="heroTitle">Pizza artesanal a la piedra, como la de siempre.</h1>
+        <p class="hero-subtitle">Más de 15 años en el barrio. Ingredientes frescos, masa de fermentación lenta y delivery en el día.</p>
+        <div class="hero-actions">
+          <a class="btn btn-whatsapp" id="heroCta" href="https://wa.me/?text=Hola%2C%20vi%20la%20demo%20de%20landing%20de%20IO%20Consulting%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.6 17l-1.1 4 4.1-1a8.9 8.9 0 0 0 4.4 1.2h0A8.9 8.9 0 0 0 20 12.9a8.8 8.8 0 0 0-2.4-6.6ZM11 19.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.6.6-2.4-.2-.3a7.4 7.4 0 1 1 13.7-3.9A7.4 7.4 0 0 1 11 19.6Zm4.1-5.5c-.2-.1-1.3-.6-1.5-.7s-.3-.1-.5.1-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.2-.7-1.6s-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.5 10.3 10.3 0 0 0 4 3.5c.5.2 1 .4 1.3.5a3.1 3.1 0 0 0 1.4.1 2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c-.1-.1-.2-.2-.4-.3Z"/></svg>
+            Pedir ahora
+          </a>
+          <a class="btn btn-ghost" href="#menu">Ver el menú</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg class="pizza" id="pizza" viewBox="0 0 400 400" focusable="false">
+          <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L200.0 10.0 A190 190 0 0 1 334.4 65.6 Z" fill="#dba15a"/><path d="M200 200 L200.0 29.0 A171 171 0 0 1 320.9 79.1 Z" fill="#c1272d"/><path d="M200 200 L200.0 37.0 A163 163 0 0 1 315.3 84.7 Z" fill="#f7d47c"/><circle cx="241.3" cy="100.2" r="17" fill="#b3212a"/><circle cx="236.3" cy="96.2" r="3" fill="#d9565c"/><circle cx="246.3" cy="105.2" r="2.4" fill="#d9565c"/><circle cx="221.9" cy="61.7" r="8" fill="#2b2320"/><circle cx="221.9" cy="61.7" r="3" fill="#f7d47c"/><ellipse cx="231.9" cy="146.9" rx="14" ry="7" fill="#3f8a45" transform="rotate(60 231.9 146.9)"/></g><path class="pz-line" pathLength="1" d="M200 200 L200.0 10.0 A190 190 0 0 1 334.4 65.6 Z"/></g>
+          <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L334.4 65.6 A190 190 0 0 1 390.0 200.0 Z" fill="#dba15a"/><path d="M200 200 L320.9 79.1 A171 171 0 0 1 371.0 200.0 Z" fill="#c1272d"/><path d="M200 200 L315.3 84.7 A163 163 0 0 1 363.0 200.0 Z" fill="#f7d47c"/><circle cx="299.8" cy="158.7" r="17" fill="#b3212a"/><circle cx="294.8" cy="154.7" r="3" fill="#d9565c"/><circle cx="304.8" cy="163.7" r="2.4" fill="#d9565c"/><circle cx="313.3" cy="117.7" r="8" fill="#2b2320"/><circle cx="313.3" cy="117.7" r="3" fill="#f7d47c"/><circle cx="260.2" cy="185.0" r="11" fill="#b3212a"/></g><path class="pz-line" pathLength="1" d="M200 200 L334.4 65.6 A190 190 0 0 1 390.0 200.0 Z"/></g>
+          <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L390.0 200.0 A190 190 0 0 1 334.4 334.4 Z" fill="#dba15a"/><path d="M200 200 L371.0 200.0 A171 171 0 0 1 320.9 320.9 Z" fill="#c1272d"/><path d="M200 200 L363.0 200.0 A163 163 0 0 1 315.3 315.3 Z" fill="#f7d47c"/><circle cx="299.8" cy="241.3" r="17" fill="#b3212a"/><circle cx="294.8" cy="237.3" r="3" fill="#d9565c"/><circle cx="304.8" cy="246.3" r="2.4" fill="#d9565c"/><circle cx="338.3" cy="221.9" r="8" fill="#2b2320"/><circle cx="338.3" cy="221.9" r="3" fill="#f7d47c"/><ellipse cx="253.1" cy="231.9" rx="14" ry="7" fill="#3f8a45" transform="rotate(150 253.1 231.9)"/></g><path class="pz-line" pathLength="1" d="M200 200 L390.0 200.0 A190 190 0 0 1 334.4 334.4 Z"/></g>
+          <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L334.4 334.4 A190 190 0 0 1 200.0 390.0 Z" fill="#dba15a"/><path d="M200 200 L320.9 320.9 A171 171 0 0 1 200.0 371.0 Z" fill="#c1272d"/><path d="M200 200 L315.3 315.3 A163 163 0 0 1 200.0 363.0 Z" fill="#f7d47c"/><circle cx="241.3" cy="299.8" r="17" fill="#b3212a"/><circle cx="236.3" cy="295.8" r="3" fill="#d9565c"/><circle cx="246.3" cy="304.8" r="2.4" fill="#d9565c"/><circle cx="282.3" cy="313.3" r="8" fill="#2b2320"/><circle cx="282.3" cy="313.3" r="3" fill="#f7d47c"/><circle cx="215.0" cy="260.2" r="11" fill="#b3212a"/></g><path class="pz-line" pathLength="1" d="M200 200 L334.4 334.4 A190 190 0 0 1 200.0 390.0 Z"/></g>
+          <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L200.0 390.0 A190 190 0 0 1 65.6 334.4 Z" fill="#dba15a"/><path d="M200 200 L200.0 371.0 A171 171 0 0 1 79.1 320.9 Z" fill="#c1272d"/><path d="M200 200 L200.0 363.0 A163 163 0 0 1 84.7 315.3 Z" fill="#f7d47c"/><circle cx="158.7" cy="299.8" r="17" fill="#b3212a"/><circle cx="153.7" cy="295.8" r="3" fill="#d9565c"/><circle cx="163.7" cy="304.8" r="2.4" fill="#d9565c"/><circle cx="178.1" cy="338.3" r="8" fill="#2b2320"/><circle cx="178.1" cy="338.3" r="3" fill="#f7d47c"/><ellipse cx="168.1" cy="253.1" rx="14" ry="7" fill="#3f8a45" transform="rotate(240 168.1 253.1)"/></g><path class="pz-line" pathLength="1" d="M200 200 L200.0 390.0 A190 190 0 0 1 65.6 334.4 Z"/></g>
+          <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L65.6 334.4 A190 190 0 0 1 10.0 200.0 Z" fill="#dba15a"/><path d="M200 200 L79.1 320.9 A171 171 0 0 1 29.0 200.0 Z" fill="#c1272d"/><path d="M200 200 L84.7 315.3 A163 163 0 0 1 37.0 200.0 Z" fill="#f7d47c"/><circle cx="100.2" cy="241.3" r="17" fill="#b3212a"/><circle cx="95.2" cy="237.3" r="3" fill="#d9565c"/><circle cx="105.2" cy="246.3" r="2.4" fill="#d9565c"/><circle cx="86.7" cy="282.3" r="8" fill="#2b2320"/><circle cx="86.7" cy="282.3" r="3" fill="#f7d47c"/><circle cx="139.8" cy="215.0" r="11" fill="#b3212a"/></g><path class="pz-line" pathLength="1" d="M200 200 L65.6 334.4 A190 190 0 0 1 10.0 200.0 Z"/></g>
+          <g class="pz-slice pz-out"><g class="pz-fill"><path d="M200 200 L10.0 200.0 A190 190 0 0 1 65.6 65.6 Z" fill="#dba15a"/><path d="M200 200 L29.0 200.0 A171 171 0 0 1 79.1 79.1 Z" fill="#c1272d"/><path d="M200 200 L37.0 200.0 A163 163 0 0 1 84.7 84.7 Z" fill="#f7d47c"/><circle cx="100.2" cy="158.7" r="17" fill="#b3212a"/><circle cx="95.2" cy="154.7" r="3" fill="#d9565c"/><circle cx="105.2" cy="163.7" r="2.4" fill="#d9565c"/><circle cx="61.7" cy="178.1" r="8" fill="#2b2320"/><circle cx="61.7" cy="178.1" r="3" fill="#f7d47c"/><ellipse cx="146.9" cy="168.1" rx="14" ry="7" fill="#3f8a45" transform="rotate(330 146.9 168.1)"/></g><path class="pz-line" pathLength="1" d="M200 200 L10.0 200.0 A190 190 0 0 1 65.6 65.6 Z"/></g>
+          <g class="pz-slice"><g class="pz-fill"><path d="M200 200 L65.6 65.6 A190 190 0 0 1 200.0 10.0 Z" fill="#dba15a"/><path d="M200 200 L79.1 79.1 A171 171 0 0 1 200.0 29.0 Z" fill="#c1272d"/><path d="M200 200 L84.7 84.7 A163 163 0 0 1 200.0 37.0 Z" fill="#f7d47c"/><circle cx="158.7" cy="100.2" r="17" fill="#b3212a"/><circle cx="153.7" cy="96.2" r="3" fill="#d9565c"/><circle cx="163.7" cy="105.2" r="2.4" fill="#d9565c"/><circle cx="117.7" cy="86.7" r="8" fill="#2b2320"/><circle cx="117.7" cy="86.7" r="3" fill="#f7d47c"/><circle cx="185.0" cy="139.8" r="11" fill="#b3212a"/></g><path class="pz-line" pathLength="1" d="M200 200 L65.6 65.6 A190 190 0 0 1 200.0 10.0 Z"/></g>
+        </svg>
       </div>
     </div>
   </section>
@@ -94,29 +107,37 @@
   <section id="menu" class="section">
     <div class="container">
       <h2 class="section-title reveal">Nuestros clásicos</h2>
-      <p class="section-subtitle reveal">Una selección de lo más pedido. Menú completo por WhatsApp.</p>
-      <div class="menu-grid">
-        <article class="menu-card reveal">
-          <h3>Muzzarella</h3>
-          <p>Salsa de tomate casera, muzzarella y aceitunas.</p>
-          <span class="price">$6.500</span>
-        </article>
-        <article class="menu-card reveal">
-          <h3>Napolitana</h3>
-          <p>Muzzarella, tomate en rodajas, ajo y orégano.</p>
-          <span class="price">$7.200</span>
-        </article>
-        <article class="menu-card reveal">
-          <h3>Fugazzeta rellena</h3>
-          <p>Doble masa, muzzarella y cebolla a la parrilla.</p>
-          <span class="price">$8.900</span>
-        </article>
-        <article class="menu-card reveal">
-          <h3>Calabresa</h3>
-          <p>Muzzarella, longaniza calabresa y morrones.</p>
-          <span class="price">$8.200</span>
-        </article>
-      </div>
+      <p class="section-subtitle reveal">Tocá una pizza y el pedido sale armado por WhatsApp.</p>
+      <ul class="carta">
+        <li class="carta-item reveal">
+          <h3 class="carta-name">Muzzarella</h3>
+          <span class="carta-dots" aria-hidden="true"></span>
+          <span class="carta-price">$6.500</span>
+          <p class="carta-desc">Salsa de tomate casera, muzzarella y aceitunas.</p>
+          <a class="carta-link" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20una%20Muzzarella%20%28pedido%20de%20prueba%20desde%20la%20demo%20de%20IO%20Consulting%29" target="_blank" rel="noopener" aria-label="Pedir Muzzarella por WhatsApp">Pedir <span aria-hidden="true">→</span></a>
+        </li>
+        <li class="carta-item reveal">
+          <h3 class="carta-name">Napolitana</h3>
+          <span class="carta-dots" aria-hidden="true"></span>
+          <span class="carta-price">$7.200</span>
+          <p class="carta-desc">Muzzarella, tomate en rodajas, ajo y orégano.</p>
+          <a class="carta-link" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20una%20Napolitana%20%28pedido%20de%20prueba%20desde%20la%20demo%20de%20IO%20Consulting%29" target="_blank" rel="noopener" aria-label="Pedir Napolitana por WhatsApp">Pedir <span aria-hidden="true">→</span></a>
+        </li>
+        <li class="carta-item reveal">
+          <h3 class="carta-name">Fugazzeta rellena <span class="badge">La más pedida</span></h3>
+          <span class="carta-dots" aria-hidden="true"></span>
+          <span class="carta-price">$8.900</span>
+          <p class="carta-desc">Doble masa, muzzarella y cebolla a la parrilla.</p>
+          <a class="carta-link" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20una%20Fugazzeta%20rellena%20%28pedido%20de%20prueba%20desde%20la%20demo%20de%20IO%20Consulting%29" target="_blank" rel="noopener" aria-label="Pedir Fugazzeta rellena por WhatsApp">Pedir <span aria-hidden="true">→</span></a>
+        </li>
+        <li class="carta-item reveal">
+          <h3 class="carta-name">Calabresa</h3>
+          <span class="carta-dots" aria-hidden="true"></span>
+          <span class="carta-price">$8.200</span>
+          <p class="carta-desc">Muzzarella, longaniza calabresa y morrones.</p>
+          <a class="carta-link" href="https://wa.me/?text=Hola%2C%20quiero%20pedir%20una%20Calabresa%20%28pedido%20de%20prueba%20desde%20la%20demo%20de%20IO%20Consulting%29" target="_blank" rel="noopener" aria-label="Pedir Calabresa por WhatsApp">Pedir <span aria-hidden="true">→</span></a>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -126,7 +147,7 @@
       <div class="features-grid">
         <div class="feature reveal">
           <div class="feature-icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c1272d" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c1272d" stroke-width="2"><path d="M5 19C5 10 10 5 20 4c0 10-5 15-15 15Z"/><path d="M5 19 13 11"/></svg>
           </div>
           <h3>Ingredientes frescos</h3>
           <p>Compramos todos los días en el mercado del barrio. Nada de congelados.</p>
